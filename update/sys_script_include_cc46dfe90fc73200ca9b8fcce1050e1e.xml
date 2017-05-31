@@ -11,15 +11,17 @@
 Utils.prototype = {
 	initialize: function() {
 	},
-	getFact : function(){
+	getFact : function(user){
 		var tbl = 'x_10164_matt_facts_fact'; //Query from this table
 		var returnNum = 5; //Return this number of records in the array
 		var factArray = []; //Array of all the facts
-		var returnFact = ''; //The fact to return
+		var returnFact = 'No fact found. Please ask the person to add some!'; //The fact to return
 		var randomNumber; //The number used to pull a random fact
 		
 		//Set up the GlideRecord query
 		var rec = new GlideRecord(tbl);
+		if(user)
+			rec.addQuery('user', user);
 		rec.query();
 		if(rec.hasNext()){
 			//Get the number of records queried
@@ -44,7 +46,7 @@ Utils.prototype = {
         <sys_created_on>2017-05-30 16:42:25</sys_created_on>
         <sys_customer_update>true</sys_customer_update>
         <sys_id>cc46dfe90fc73200ca9b8fcce1050e1e</sys_id>
-        <sys_mod_count>18</sys_mod_count>
+        <sys_mod_count>23</sys_mod_count>
         <sys_name>Utils</sys_name>
         <sys_package display_value="Matt Facts" source="x_10164_matt_facts">f183d7690fc73200ca9b8fcce1050e96</sys_package>
         <sys_policy>read</sys_policy>
@@ -52,6 +54,6 @@ Utils.prototype = {
         <sys_scope display_value="Matt Facts">f183d7690fc73200ca9b8fcce1050e96</sys_scope>
         <sys_update_name>sys_script_include_cc46dfe90fc73200ca9b8fcce1050e1e</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2017-05-30 18:02:26</sys_updated_on>
+        <sys_updated_on>2017-05-31 12:16:04</sys_updated_on>
     </sys_script_include>
 </record_update>

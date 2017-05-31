@@ -4,37 +4,42 @@
         <active>true</active>
         <consumes>application/json,application/xml,text/xml,text/plain,multipart/form-data,application/x-www-form-urlencoded</consumes>
         <consumes_customized>true</consumes_customized>
-        <default_operation_uri>/api/x_10164_matt_facts/utils/getFact</default_operation_uri>
+        <default_operation_uri/>
         <enforce_acl/>
         <http_method>POST</http_method>
-        <name>getFact</name>
+        <name>getFact (v2)</name>
         <operation_script><![CDATA[(function process(/*RESTAPIRequest*/ request, /*RESTAPIResponse*/ response) {
 	var writer;
 	if (request.queryParams.token == 'iDSYNadAxX1AKfQ3FxvgUU3j') {
-		
-		var utils = new Utils();
-		var fact = utils.getFact();
-		
-		var slackMessage = {
-			response_type: 'in_channel',
-			text: fact,
-			attachments: [],
-			icon_emoji : ':rockonmatt:'
-		};
-		
-		response.setStatus(200);
-		response.setContentType('application/json');
-		writer = response.getStreamWriter();
-		writer.writeString(JSON.stringify(slackMessage));
-		
+		if(request.queryParams.text != ''){
+			var utils = new Utils();
+			var fact = utils.getFact(request.queryParams.text.toString().toLowerCase());
+			
+			var slackMessage = {
+				response_type: 'in_channel',
+				text: fact,
+				attachments: [],
+				icon_emoji : ':rockonmatt:'
+			};
+			
+			response.setStatus(200);
+			response.setContentType('application/json');
+			writer = response.getStreamWriter();
+			writer.writeString(JSON.stringify(slackMessage));
+		} else {
+			response.setStatus(200);
+			response.setContentType('application/json');
+			writer = response.getStreamWriter();
+			writer.writeString(JSON.stringify({text: 'You must supply a name in order to get a fact!'}));
+		}
 	} else {
 		response.setStatus(403);
 		response.setContentType('application/json');
 		writer = response.getStreamWriter();
 		writer.writeString(JSON.stringify({text: 'Not Authorized'}));
-	}
-})(request, response);]]></operation_script>
-        <operation_uri>/api/x_10164_matt_facts/v1/utils/getFact</operation_uri>
+		}
+	})(request, response);]]></operation_script>
+        <operation_uri>/api/x_10164_matt_facts/v2/utils/getFact</operation_uri>
         <produces>application/json,application/xml,text/xml</produces>
         <produces_customized>false</produces_customized>
         <relative_path>/getFact</relative_path>
@@ -44,19 +49,19 @@
         <short_description/>
         <sys_class_name>sys_ws_operation</sys_class_name>
         <sys_created_by>admin</sys_created_by>
-        <sys_created_on>2017-05-30 16:28:55</sys_created_on>
+        <sys_created_on>2017-05-31 12:02:20</sys_created_on>
         <sys_customer_update>true</sys_customer_update>
-        <sys_id>87f3d7690fc73200ca9b8fcce1050e98</sys_id>
-        <sys_mod_count>49</sys_mod_count>
-        <sys_name>getFact</sys_name>
+        <sys_id>9fb02b3d0f033200ca9b8fcce1050ea9</sys_id>
+        <sys_mod_count>8</sys_mod_count>
+        <sys_name>getFact (v2)</sys_name>
         <sys_package display_value="Matt Facts" source="x_10164_matt_facts">f183d7690fc73200ca9b8fcce1050e96</sys_package>
         <sys_policy/>
         <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
         <sys_scope display_value="Matt Facts">f183d7690fc73200ca9b8fcce1050e96</sys_scope>
-        <sys_update_name>sys_ws_operation_87f3d7690fc73200ca9b8fcce1050e98</sys_update_name>
+        <sys_update_name>sys_ws_operation_9fb02b3d0f033200ca9b8fcce1050ea9</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2017-05-31 12:00:23</sys_updated_on>
+        <sys_updated_on>2017-05-31 13:16:02</sys_updated_on>
         <web_service_definition display_value="Utils">c0a353a90fc73200ca9b8fcce1050e95</web_service_definition>
-        <web_service_version display_value="v1">3a40e3f90f033200ca9b8fcce1050e67</web_service_version>
+        <web_service_version display_value="v2">5fb02b3d0f033200ca9b8fcce1050ea7</web_service_version>
     </sys_ws_operation>
 </record_update>
