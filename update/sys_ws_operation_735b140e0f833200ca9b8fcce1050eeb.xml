@@ -7,13 +7,15 @@
         <default_operation_uri/>
         <enforce_acl/>
         <http_method>POST</http_method>
-        <name>getFact (v2)</name>
+        <name>getFact (v3)</name>
         <operation_script><![CDATA[(function process(/*RESTAPIRequest*/ request, /*RESTAPIResponse*/ response) {
 	var writer;
 	if (request.queryParams.token == 'iDSYNadAxX1AKfQ3FxvgUU3j') {
 		if(request.queryParams.text != ''){
 			var utils = new Utils();
-			var fact = utils.getFact(request.queryParams.text.toString().toLowerCase());
+			var user = request.queryParams.text.toString().toLowerCase();
+			var removedUser = user.replace(new RegExp('@', 'gi'), '');
+			var fact = utils.getFact(removedUser);
 			
 			var slackMessage = {
 				response_type: 'in_channel',
@@ -39,7 +41,7 @@
 		writer.writeString(JSON.stringify({text: 'Not Authorized'}));
 		}
 	})(request, response);]]></operation_script>
-        <operation_uri>/api/x_10164_matt_facts/v2/utils/getFact</operation_uri>
+        <operation_uri>/api/x_10164_matt_facts/v3/utils/getFact</operation_uri>
         <produces>application/json,application/xml,text/xml</produces>
         <produces_customized>false</produces_customized>
         <relative_path>/getFact</relative_path>
@@ -49,19 +51,19 @@
         <short_description/>
         <sys_class_name>sys_ws_operation</sys_class_name>
         <sys_created_by>admin</sys_created_by>
-        <sys_created_on>2017-05-31 12:02:20</sys_created_on>
+        <sys_created_on>2017-05-31 16:18:30</sys_created_on>
         <sys_customer_update>true</sys_customer_update>
-        <sys_id>9fb02b3d0f033200ca9b8fcce1050ea9</sys_id>
-        <sys_mod_count>11</sys_mod_count>
-        <sys_name>getFact (v2)</sys_name>
+        <sys_id>735b140e0f833200ca9b8fcce1050eeb</sys_id>
+        <sys_mod_count>6</sys_mod_count>
+        <sys_name>getFact (v3)</sys_name>
         <sys_package display_value="Matt Facts" source="x_10164_matt_facts">f183d7690fc73200ca9b8fcce1050e96</sys_package>
         <sys_policy/>
         <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
         <sys_scope display_value="Matt Facts">f183d7690fc73200ca9b8fcce1050e96</sys_scope>
-        <sys_update_name>sys_ws_operation_9fb02b3d0f033200ca9b8fcce1050ea9</sys_update_name>
+        <sys_update_name>sys_ws_operation_735b140e0f833200ca9b8fcce1050eeb</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2017-05-31 16:12:49</sys_updated_on>
+        <sys_updated_on>2017-05-31 16:23:45</sys_updated_on>
         <web_service_definition display_value="Utils">c0a353a90fc73200ca9b8fcce1050e95</web_service_definition>
-        <web_service_version display_value="v2">5fb02b3d0f033200ca9b8fcce1050ea7</web_service_version>
+        <web_service_version display_value="v3">775b140e0f833200ca9b8fcce1050ee8</web_service_version>
     </sys_ws_operation>
 </record_update>
