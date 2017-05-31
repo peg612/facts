@@ -3,13 +3,14 @@
     <sys_script_include action="INSERT_OR_UPDATE">
         <access>package_private</access>
         <active>true</active>
-        <api_name>x_10164_matt_facts.slackMessageFacts</api_name>
+        <api_name>x_10164_matt_facts.SlackFact</api_name>
         <client_callable>false</client_callable>
         <description/>
-        <name>slackMessageFacts</name>
-        <script><![CDATA[var slackMessageFacts = Class.create();
-slackMessageFacts.prototype = {
-	initialize: function() {
+        <name>SlackFact</name>
+        <script><![CDATA[var SlackFact = Class.create();
+
+SlackFact.prototype = {
+	'initialize': function() {
 		if (gs.getProperty('slack_message.default_icon_url') != '') {
 			this.payload.icon_url = gs.getProperty('slack_message.default_icon_url');
 		}
@@ -17,6 +18,7 @@ slackMessageFacts.prototype = {
 			this.payload.icon_emoji = gs.getProperty('slack_message.default_icon_emoji');
 		}
 	},
+	
 	'send': function (text, channel) {
 		// Set the text and channel (or fall back to defaults)
 		this.payload.text = text || this.payload.text;
@@ -36,7 +38,7 @@ slackMessageFacts.prototype = {
 		return res;
 	},
 	
-//	'endpoint': 'https://hooks.slack.com/services/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',
+	'endpoint': 'https://hooks.slack.com/services/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',
 	'method': 'post',
 	'payload': {
 		// 'channel': gs.getProperty('slack_message.default_channel'),
@@ -45,21 +47,21 @@ slackMessageFacts.prototype = {
 		'attachments': []
 	},
 	
-	type: 'slackMessageFacts'
+	'type': 'SlackFact'
 };]]></script>
         <sys_class_name>sys_script_include</sys_class_name>
         <sys_created_by>admin</sys_created_by>
-        <sys_created_on>2017-05-30 17:57:44</sys_created_on>
+        <sys_created_on>2017-05-31 14:06:54</sys_created_on>
         <sys_customer_update>true</sys_customer_update>
-        <sys_id>fc38ef650f0b3200ca9b8fcce1050e2d</sys_id>
-        <sys_mod_count>2</sys_mod_count>
-        <sys_name>slackMessageFacts</sys_name>
+        <sys_id>504dfbf90f433200ca9b8fcce1050e30</sys_id>
+        <sys_mod_count>4</sys_mod_count>
+        <sys_name>SlackFact</sys_name>
         <sys_package display_value="Matt Facts" source="x_10164_matt_facts">f183d7690fc73200ca9b8fcce1050e96</sys_package>
         <sys_policy/>
         <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
         <sys_scope display_value="Matt Facts">f183d7690fc73200ca9b8fcce1050e96</sys_scope>
-        <sys_update_name>sys_script_include_fc38ef650f0b3200ca9b8fcce1050e2d</sys_update_name>
+        <sys_update_name>sys_script_include_504dfbf90f433200ca9b8fcce1050e30</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2017-05-30 18:15:10</sys_updated_on>
+        <sys_updated_on>2017-05-31 14:19:50</sys_updated_on>
     </sys_script_include>
 </record_update>

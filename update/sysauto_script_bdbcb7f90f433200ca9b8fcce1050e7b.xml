@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<record_update table="sysauto_script">
+    <sysauto_script action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <condition><![CDATA[function checkWeekdays() {
+	var now = new Date();
+	var day = now.getDay();
+	var result = false;
+	if(day != 0 && day != 6) {
+		result = true;
+	}
+	return result;
+}
+checkWeekdays();]]></condition>
+        <conditional>true</conditional>
+        <name>Send random fact to slack</name>
+        <run_as display_value="System Administrator">6816f79cc0a8016401c5a33be04be441</run_as>
+        <run_as_tz/>
+        <run_dayofmonth>1</run_dayofmonth>
+        <run_dayofweek>1</run_dayofweek>
+        <run_period/>
+        <run_start>2017-05-31 14:04:34</run_start>
+        <run_time>1970-01-01 14:00:00</run_time>
+        <run_type>daily</run_type>
+        <script><![CDATA[var utils = new Utils();
+var fact = utils.getFact();
+
+var slack = new SlackFact();
+
+slack.payload.text = 'Random Daily Fact: ' + fact;
+slack.payload.username = 'Facts';
+slack.payload.icon_emoji = ':rockonmatt:';
+slack.payload.channel = '#general';
+slack.link_names = 1;
+
+// Fire off the message
+slack.send();]]></script>
+        <sys_class_name>sysauto_script</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2017-05-31 14:05:29</sys_created_on>
+        <sys_customer_update>true</sys_customer_update>
+        <sys_id>bdbcb7f90f433200ca9b8fcce1050e7b</sys_id>
+        <sys_mod_count>8</sys_mod_count>
+        <sys_name>Send random fact to slack</sys_name>
+        <sys_package display_value="Matt Facts" source="x_10164_matt_facts">f183d7690fc73200ca9b8fcce1050e96</sys_package>
+        <sys_policy/>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="Matt Facts">f183d7690fc73200ca9b8fcce1050e96</sys_scope>
+        <sys_update_name>sysauto_script_bdbcb7f90f433200ca9b8fcce1050e7b</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2017-05-31 14:17:37</sys_updated_on>
+        <upgrade_safe>false</upgrade_safe>
+    </sysauto_script>
+</record_update>
