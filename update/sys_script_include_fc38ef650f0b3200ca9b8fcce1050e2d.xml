@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<record_update table="sys_script_include">
+    <sys_script_include action="INSERT_OR_UPDATE">
+        <access>package_private</access>
+        <active>true</active>
+        <api_name>x_10164_matt_facts.slackMessageFacts</api_name>
+        <client_callable>false</client_callable>
+        <description/>
+        <name>slackMessageFacts</name>
+        <script><![CDATA[var slackMessageFacts = Class.create();
+slackMessageFacts.prototype = {
+	initialize: function() {
+		if (gs.getProperty('slack_message.default_icon_url') != '') {
+			this.payload.icon_url = gs.getProperty('slack_message.default_icon_url');
+		}
+		else if (gs.getProperty('slack_message.default_icon_emoji') != '') {
+			this.payload.icon_emoji = gs.getProperty('slack_message.default_icon_emoji');
+		}
+	},
+	'send': function (text, channel) {
+		// Set the text and channel (or fall back to defaults)
+		this.payload.text = text || this.payload.text;
+		this.payload.channel = channel || this.payload.channel;
+		
+		// Encode the payload as JSON
+		var SNJSON = JSON; // Workaround for JSLint warning about using JSON as a constructor
+		var myjson = new global.JSON();
+		var encoded_payload = myjson.encode(this.payload);
+		
+		// Create and send the REST Message
+		var msg = new sn_ws.RESTMessageV2();
+		msg.setEndpoint(this.endpoint);
+		msg.setHttpMethod(this.method);
+		msg.setRequestBody(encoded_payload);
+		var res = msg.execute();
+		return res;
+	},
+	
+//	'endpoint': 'https://hooks.slack.com/services/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',
+	'method': 'post',
+	'payload': {
+		// 'channel': gs.getProperty('slack_message.default_channel'),
+		// 'username': gs.getProperty('slack_message.default_username'),
+		'text': '',
+		'attachments': []
+	},
+	
+	type: 'slackMessageFacts'
+};]]></script>
+        <sys_class_name>sys_script_include</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2017-05-30 17:57:44</sys_created_on>
+        <sys_customer_update>true</sys_customer_update>
+        <sys_id>fc38ef650f0b3200ca9b8fcce1050e2d</sys_id>
+        <sys_mod_count>2</sys_mod_count>
+        <sys_name>slackMessageFacts</sys_name>
+        <sys_package display_value="Matt Facts" source="x_10164_matt_facts">f183d7690fc73200ca9b8fcce1050e96</sys_package>
+        <sys_policy/>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="Matt Facts">f183d7690fc73200ca9b8fcce1050e96</sys_scope>
+        <sys_update_name>sys_script_include_fc38ef650f0b3200ca9b8fcce1050e2d</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2017-05-30 18:15:10</sys_updated_on>
+    </sys_script_include>
+</record_update>

@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<database>
+    <element label="Fact" max_length="40" name="x_10164_matt_facts_fact" type="collection">
+        <element display="true" label="Description" max_length="4000" name="description" type="string"/>
+    </element>
+</database>

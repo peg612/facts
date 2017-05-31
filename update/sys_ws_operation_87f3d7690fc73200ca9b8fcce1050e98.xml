@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<record_update table="sys_ws_operation">
+    <sys_ws_operation action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <consumes>application/json,application/xml,text/xml,text/plain,multipart/form-data,application/x-www-form-urlencoded</consumes>
+        <consumes_customized>true</consumes_customized>
+        <default_operation_uri/>
+        <enforce_acl/>
+        <http_method>POST</http_method>
+        <name>getFact</name>
+        <operation_script><![CDATA[(function process(/*RESTAPIRequest*/ request, /*RESTAPIResponse*/ response) {
+	
+	// implement resource here
+	
+	
+	gs.info('paul ' + request.queryParams.token);
+	gs.info('paul fired');
+	gs.info('paul ' + request.queryParams.text);
+	gs.info('aul channel j ' + request.queryParams.channel_name);
+	gs.info('repnose url ' + request.queryParams.response_url);
+	if (request.queryParams.token == 'iDSYNadAxX1AKfQ3FxvgUU3j') {
+		gs.info('paul token is right');
+		
+		
+		var utils = new Utils();
+		var fact = utils.getFact();
+	
+		var slackMessage = {
+			response_type: 'in_channel',
+			text: fact,
+			attachments: [],
+			icon_emoji : ':rockonmatt:'
+		};
+		//	return slackMessage;
+		response.setStatus(200);
+		response.setContentType('application/json');
+		var writer = response.getStreamWriter();
+		writer.writeString(JSON.stringify(slackMessage));
+		//response.setBody(slackMessage);
+		
+		
+		
+		// 			var writer = response.getStreamWriter();
+		// 			response.setContentType('application/json');
+		// 			response.setStatus(200);
+		// 			response_body = {
+			// 				"attachments": [
+			// 				{
+				// 					"fallback": "Required plain-text summary of the attachment.",
+				// 					"color": "#36a64f",
+				// 					"pretext": "Optional text that appears above the attachment block",
+				// 					"author_name": "Bobby Tables",
+				// 					"author_link": "http://flickr.com/bobby/",
+				// 					"author_icon": "http://flickr.com/icons/bobby.jpg",
+				// 					"title": "Slack API Documentation",
+				// 					"title_link": "https://api.slack.com/",
+				// 					"text": "Optional text that appears within the attachment",
+				// 					"fields": [
+				// 					{
+					// 						"title": "Priority",
+					// 						"value": "High",
+					// 						"short": false
+					// 					}
+					// 					],
+					// 					"image_url": "http://my-website.com/path/to/image.jpg",
+					// 					"thumb_url": "http://example.com/path/to/thumb.png",
+					// 					"footer": "Slack API",
+					// 					"footer_icon": "https://platform.slack-edge.com/img/default_application_icon.png",
+					// 					"ts": 123456789
+					// 				}
+					// 				]
+					
+					
+					// 				// 				"text": gr.short_description.toString(),
+					// 				// 				"Content-type": "application/json"
+					// 			};
+					
+					// 			writer.writeString(global.JSON.stringify(response_body));
+					
+					
+					
+					
+					//return gr.short_description.toString();
+					//return request.queryParams.number;
+				} else {
+					return "Not Authorized";
+				}
+			})(request, response);]]></operation_script>
+        <operation_uri>/api/x_10164_matt_facts/utils/getFact</operation_uri>
+        <produces>application/json,application/xml,text/xml</produces>
+        <produces_customized>false</produces_customized>
+        <relative_path>/getFact</relative_path>
+        <request_example/>
+        <requires_acl_authorization>false</requires_acl_authorization>
+        <requires_authentication>false</requires_authentication>
+        <short_description/>
+        <sys_class_name>sys_ws_operation</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2017-05-30 16:28:55</sys_created_on>
+        <sys_customer_update>true</sys_customer_update>
+        <sys_id>87f3d7690fc73200ca9b8fcce1050e98</sys_id>
+        <sys_mod_count>47</sys_mod_count>
+        <sys_name>getFact</sys_name>
+        <sys_package display_value="Matt Facts" source="x_10164_matt_facts">f183d7690fc73200ca9b8fcce1050e96</sys_package>
+        <sys_policy/>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="Matt Facts">f183d7690fc73200ca9b8fcce1050e96</sys_scope>
+        <sys_update_name>sys_ws_operation_87f3d7690fc73200ca9b8fcce1050e98</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2017-05-31 11:18:24</sys_updated_on>
+        <web_service_definition display_value="Utils">c0a353a90fc73200ca9b8fcce1050e95</web_service_definition>
+        <web_service_version/>
+    </sys_ws_operation>
+</record_update>

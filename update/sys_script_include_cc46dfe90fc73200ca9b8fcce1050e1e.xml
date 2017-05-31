@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<record_update table="sys_script_include">
+    <sys_script_include action="INSERT_OR_UPDATE">
+        <access>package_private</access>
+        <active>true</active>
+        <api_name>x_10164_matt_facts.Utils</api_name>
+        <client_callable>false</client_callable>
+        <description>Contains different utils for the matt facts application. </description>
+        <name>Utils</name>
+        <script><![CDATA[var Utils = Class.create();
+Utils.prototype = {
+	initialize: function() {
+	},
+	getFact : function(){
+		var tbl = 'x_10164_matt_facts_fact'; //Query from this table
+		var returnNum = 5; //Return this number of records in the array
+		var factArray = []; //Array of all the facts
+		var returnFact = ''; //The fact to return
+		var randomNumber; //The number used to pull a random fact
+		
+		//Set up the GlideRecord query
+		var rec = new GlideRecord(tbl);
+		rec.query();
+		if(rec.hasNext()){
+			//Get the number of records queried
+			var numRecs = rec.getRowCount();
+			//Ensure number of records is not less than number to return
+			if(numRecs < returnNum){
+				returnNum = numRecs;
+			}	
+			while(rec.next()){
+				factArray.push(rec.description.toString());
+			}
+			//Get a random number between 0 and 'numRecs'
+			randomNumber = Math.floor(Math.random()*numRecs);
+			returnFact = factArray[randomNumber];
+		}
+		return returnFact.toString();
+	},
+	type: 'Utils'
+};]]></script>
+        <sys_class_name>sys_script_include</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2017-05-30 16:42:25</sys_created_on>
+        <sys_customer_update>true</sys_customer_update>
+        <sys_id>cc46dfe90fc73200ca9b8fcce1050e1e</sys_id>
+        <sys_mod_count>18</sys_mod_count>
+        <sys_name>Utils</sys_name>
+        <sys_package display_value="Matt Facts" source="x_10164_matt_facts">f183d7690fc73200ca9b8fcce1050e96</sys_package>
+        <sys_policy>read</sys_policy>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="Matt Facts">f183d7690fc73200ca9b8fcce1050e96</sys_scope>
+        <sys_update_name>sys_script_include_cc46dfe90fc73200ca9b8fcce1050e1e</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2017-05-30 18:02:26</sys_updated_on>
+    </sys_script_include>
+</record_update>
