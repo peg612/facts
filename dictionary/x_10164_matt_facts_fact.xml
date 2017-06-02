@@ -2,6 +2,7 @@
 <database>
     <element label="Fact" max_length="40" name="x_10164_matt_facts_fact" type="collection">
         <element display="true" label="Description" max_length="4000" name="description" type="string"/>
+        <element label="Sent" max_length="40" name="sent" type="boolean"/>
         <element label="User" max_length="40" name="user" type="string"/>
     </element>
 </database>
