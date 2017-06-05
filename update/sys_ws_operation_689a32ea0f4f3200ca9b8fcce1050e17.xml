@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<record_update table="sys_ws_operation">
+    <sys_ws_operation action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <consumes>application/json,application/xml,text/xml,text/plain,multipart/form-data,application/x-www-form-urlencoded</consumes>
+        <consumes_customized>true</consumes_customized>
+        <default_operation_uri>/api/x_10164_matt_facts/utils/submitVote</default_operation_uri>
+        <enforce_acl/>
+        <http_method>POST</http_method>
+        <name>submitVote</name>
+        <operation_script><![CDATA[(function process(/*RESTAPIRequest*/ request, /*RESTAPIResponse*/ response) {
+	
+	// implement resource here
+	var parser = new global.JSON();
+
+	gs.info('first ' + parser.encode(request.queryParams));
+	gs.info('payload ' + parser.encode(request.queryParams.payload));
+	
+	
+	//	gs.info('body ' + obj);
+	
+	
+})(request, response);]]></operation_script>
+        <operation_uri>/api/x_10164_matt_facts/v1/utils/submitVote</operation_uri>
+        <produces>application/json,application/xml,text/xml</produces>
+        <produces_customized>false</produces_customized>
+        <relative_path>/submitVote</relative_path>
+        <request_example/>
+        <requires_acl_authorization>false</requires_acl_authorization>
+        <requires_authentication>false</requires_authentication>
+        <short_description/>
+        <sys_class_name>sys_ws_operation</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2017-06-02 17:11:42</sys_created_on>
+        <sys_customer_update>true</sys_customer_update>
+        <sys_id>689a32ea0f4f3200ca9b8fcce1050e17</sys_id>
+        <sys_mod_count>49</sys_mod_count>
+        <sys_name>submitVote</sys_name>
+        <sys_package display_value="Matt Facts" source="x_10164_matt_facts">f183d7690fc73200ca9b8fcce1050e96</sys_package>
+        <sys_policy/>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="Matt Facts">f183d7690fc73200ca9b8fcce1050e96</sys_scope>
+        <sys_update_name>sys_ws_operation_689a32ea0f4f3200ca9b8fcce1050e17</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2017-06-05 12:55:23</sys_updated_on>
+        <web_service_definition display_value="Utils">c0a353a90fc73200ca9b8fcce1050e95</web_service_definition>
+        <web_service_version display_value="v1">3a40e3f90f033200ca9b8fcce1050e67</web_service_version>
+    </sys_ws_operation>
+</record_update>

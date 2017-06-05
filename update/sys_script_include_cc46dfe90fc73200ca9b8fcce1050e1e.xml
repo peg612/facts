@@ -91,6 +91,38 @@ Utils.prototype = {
 		return returnFact;
 	}, 
 	
+	getFactV6 : function(user){
+		var tbl = 'x_10164_matt_facts_fact'; //Query from this table
+		var factArray = []; //Array of all the facts
+		var returnFact = 'No fact found. Please ask the person to add some!'; //The fact to return
+		var randomNumber; //The number used to pull a random fact
+		
+		//Set up the GlideRecord query
+		var rec = new GlideRecord(tbl);
+		if(user)
+			rec.addQuery('user', user);
+		rec.query();
+		if(rec.hasNext()){
+			while(rec.next()){
+				if(rec.sent != true){
+					factArray.push({
+						sysID : rec.sys_id.toString(),
+						description : rec.description.toString()
+					});
+				}
+			}
+			var numRecs = factArray.length;
+			//Get a random number between 0 and 'numRecs'
+			randomNumber = Math.floor(Math.random()*numRecs);
+			returnFact = {
+					description : factArray[randomNumber].description.toString(),
+					id : factArray[randomNumber].sysID.toString()
+				};
+			this._markFactSent(factArray[randomNumber].sysID.toString());
+		}
+		return returnFact;
+	}, 
+	
 	addFact : function(user, fact){
 		var gr = new GlideRecord('x_10164_matt_facts_fact');
 		gr.initialize();
@@ -116,7 +148,7 @@ Utils.prototype = {
         <sys_created_on>2017-05-30 16:42:25</sys_created_on>
         <sys_customer_update>true</sys_customer_update>
         <sys_id>cc46dfe90fc73200ca9b8fcce1050e1e</sys_id>
-        <sys_mod_count>51</sys_mod_count>
+        <sys_mod_count>53</sys_mod_count>
         <sys_name>Utils</sys_name>
         <sys_package display_value="Matt Facts" source="x_10164_matt_facts">f183d7690fc73200ca9b8fcce1050e96</sys_package>
         <sys_policy>read</sys_policy>
@@ -124,6 +156,6 @@ Utils.prototype = {
         <sys_scope display_value="Matt Facts">f183d7690fc73200ca9b8fcce1050e96</sys_scope>
         <sys_update_name>sys_script_include_cc46dfe90fc73200ca9b8fcce1050e1e</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2017-06-01 15:43:00</sys_updated_on>
+        <sys_updated_on>2017-06-05 13:09:21</sys_updated_on>
     </sys_script_include>
 </record_update>
