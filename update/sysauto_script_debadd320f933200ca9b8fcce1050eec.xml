@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<record_update table="sysauto_script">
+    <sysauto_script action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <condition/>
+        <conditional>false</conditional>
+        <name>Copy Facts from DevOps to Program</name>
+        <run_as display_value="System Administrator">6816f79cc0a8016401c5a33be04be441</run_as>
+        <run_as_tz/>
+        <run_dayofmonth>1</run_dayofmonth>
+        <run_dayofweek>1</run_dayofweek>
+        <run_period/>
+        <run_start>2017-06-15 15:06:26</run_start>
+        <run_time>1970-01-01 05:00:00</run_time>
+        <run_type>on_demand</run_type>
+        <script><![CDATA[//DevOps: x_10164_matt_facts_fact
+//Program: x_10164_matt_facts_program_slack_facts
+
+var startTable = 'x_10164_matt_facts_fact';
+var startUser = 'platypus';
+var endTable = 'x_10164_matt_facts_program_slack_facts';
+var endUser = 'paul.grupe';
+
+var startGR = new GlideRecord(startTable);
+startGR.addQuery('user', startUser);
+startGR.query();
+while(startGR.next()){
+	var endTableGR = new GlideRecord(endTable);
+	endTableGR.initialize();
+	endTableGR.user = endUser;
+	endTableGR.description = startGR.description.toString();
+	endTableGR.insert();
+}]]></script>
+        <sys_class_name>sysauto_script</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2017-06-15 15:13:39</sys_created_on>
+        <sys_customer_update>true</sys_customer_update>
+        <sys_id>debadd320f933200ca9b8fcce1050eec</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>Copy Facts from DevOps to Program</sys_name>
+        <sys_package display_value="Matt Facts" source="x_10164_matt_facts">f183d7690fc73200ca9b8fcce1050e96</sys_package>
+        <sys_policy/>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="Matt Facts">f183d7690fc73200ca9b8fcce1050e96</sys_scope>
+        <sys_update_name>sysauto_script_debadd320f933200ca9b8fcce1050eec</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2017-06-15 15:13:39</sys_updated_on>
+        <upgrade_safe>false</upgrade_safe>
+    </sysauto_script>
+</record_update>

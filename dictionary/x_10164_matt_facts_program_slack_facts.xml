@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<database>
+    <element label="Program Slack Facts" max_length="40" name="x_10164_matt_facts_program_slack_facts" type="collection">
+        <element label="description" max_length="4000" name="description" type="string"/>
+        <element label="Sent" max_length="40" name="sent" type="boolean"/>
+        <element label="User" max_length="40" name="user" type="string"/>
+    </element>
+</database>
